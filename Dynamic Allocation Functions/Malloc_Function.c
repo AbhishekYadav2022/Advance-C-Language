@@ -3,9 +3,9 @@
 
 int main()
 {
-    // Use of calloc ---> initializes with zero
+    // Use of malloc ---> initializes with garbage value
     int *ptr;
-    ptr = (int *)calloc(3, sizeof(int));
+    ptr = (int *)malloc(3 * sizeof(int));
     for (int i = 0; i < 3; i++)
     {
         printf("Enter the value no %d of this array: ", i);
