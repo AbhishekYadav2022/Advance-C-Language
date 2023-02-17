@@ -30,6 +30,7 @@ int main()
         printf("The new value at %d of this array: ", i);
         printf("%d\n", ptr[i]);
     }
+    // Comment in codespaces
 
     return 0;
 }
