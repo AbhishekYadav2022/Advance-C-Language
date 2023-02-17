@@ -4,6 +4,8 @@
 int main()
 {
     // Use of calloc ---> initializes with zero
+    // Notes:-
+    
     int *ptr;
     ptr = (int *)calloc(3, sizeof(int));
     for (int i = 0; i < 3; i++)
