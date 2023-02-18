@@ -1,36 +1,51 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 int main()
 {
-    // Use of calloc ---> initializes with zero
-    int *ptr;
-    ptr = (int *)calloc(3, sizeof(int));
-    for (int i = 0; i < 3; i++)
+    int *number;
+    int *newNumber;
+    int x;
+
+    number = malloc(sizeof(int) * 5);
+
+    if (number == NULL)
     {
-        printf("Enter the value no %d of this array: ", i);
-        scanf("%d", &ptr[i]);
+        printf("Out of memory!\n");
+    }
+    else
+    {
+        printf("Original memory:\n");
+        for (x = 0; x < 5; x++)
+        {
+            number[x] = x * 100;
+            printf("number[%d] = %d\n", x, number[x]);
+        }
     }
 
-    for (int i = 0; i < 3; i++)
+    // Using realloc() function
+    newNumber = realloc(number, 10 * sizeof(int));
+    if (newNumber == NULL)
     {
-        printf("The value at %d of this array: ", i);
-        printf("%d\n", ptr[i]);
+        printf("Out of memory!\n");
+    }
+    else
+    {
+        number = newNumber; // Important
+        // intialize new memory only
+        for (x = 5; x < 10; x++)
+        {
+            number[x] = x * 100;
+        }
+
+        printf("\nExpanded memory:\n");
+        for (x = 0; x < 10; x++)
+        {
+            printf("number[%d] = %d\n", x, number[x]);
+        }
     }
 
-    // Use of realloc
-    ptr = (int *)realloc(ptr, 3*sizeof(int));
-    for (int i = 0; i < 3; i++)
-    {
-        printf("Enter the new value no %d of this array: ", i);
-        scanf("%d", &ptr[i]);
-    }
-
-    for (int i = 0; i < 3; i++)
-    {
-        printf("The new value at %d of this array: ", i);
-        printf("%d\n", ptr[i]);
-    }
-    // Comment in codespaces
+    // Free memory 
+    free(number);
 
     return 0;
 }
