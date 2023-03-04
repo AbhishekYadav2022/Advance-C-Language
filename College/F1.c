@@ -1,5 +1,6 @@
 // C Program for implementing all the operations by linked list in queue
 #include <stdio.h>
+#include <stdlib.h>
 
 struct node
 {
@@ -18,7 +19,7 @@ int main()
     while (choice != 4)
     {
     start:
-        printf("\n Main Menu\nPress 1 for insert\nPrint 2 for elete\nPress 3 for display\nPress 4 for exit");
+        printf("\n Main Menu\nPress 1 for insert\nPrint 2 for delete\nPress 3 for display\nPress 4 for exit");
         printf("\nEnter your choice: ");
         scanf("%d", &choice);
         switch (choice)
@@ -78,6 +79,40 @@ void insert()
             rear->next = ptr;
             rear = ptr;
             rear->next = NULL;
+        }
+    }
+}
+
+void delete()
+{
+    struct node *ptr;
+    if (front == NULL)
+    {
+        printf("\n Underflow");
+    }
+    else
+    {
+        ptr = front;
+        front = front->next;
+        free(ptr);
+    }
+}
+
+void display()
+{
+    struct node *ptr;
+    ptr = front;
+    if (front == NULL)
+    {
+        printf("\nQueue is empty");
+    }
+    else
+    {
+        printf("\nPrinting values...\n");
+        while (ptr != NULL)
+        {
+            printf("%5d", ptr->data);
+            ptr = ptr->next;
         }
     }
 }
